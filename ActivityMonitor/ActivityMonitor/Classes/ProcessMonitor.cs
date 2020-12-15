@@ -31,13 +31,15 @@ namespace ActivityMonitor.Classes
 
         public void StartMonitoring()
         {
+            ManagementScope scope = new ManagementScope("\\\\127.0.0.1\\root\\CIMv2");
+            scope.Connect();
             try
             {
-                _startWatch = new ManagementEventWatcher(new WqlEventQuery("SELECT * FROM Win32_ProcessStartTrace"));
+                _startWatch = new ManagementEventWatcher(scope, new WqlEventQuery("SELECT * FROM Win32_ProcessStartTrace"));
                 _startWatch.EventArrived += new EventArrivedEventHandler(startWatch_EventArrived);
                 _startWatch.Start();
 
-                _stopWatch = new ManagementEventWatcher(new WqlEventQuery("SELECT * FROM Win32_ProcessStopTrace"));
+                _stopWatch = new ManagementEventWatcher(scope, new WqlEventQuery("SELECT * FROM Win32_ProcessStopTrace"));
                 _stopWatch.EventArrived += new EventArrivedEventHandler(stopWatch_EventArrived);
                 _stopWatch.Start();
             }

@@ -28,9 +28,9 @@ namespace ActivityMonitor
 
             var resourcesToMonitor = new List<IMonitorResource>();
 
-            if (!currectDisk.Equals(windowsDisk))
-                resourcesToMonitor.Add(new FileMonitor(windowsDisk));
-            resourcesToMonitor.Add(new FileMonitor(currectDisk));
+            // if (!currectDisk.Equals(windowsDisk))
+               // resourcesToMonitor.Add(new FileMonitor(windowsDisk));
+            // resourcesToMonitor.Add(new FileMonitor(currectDisk));
             resourcesToMonitor.Add(ProcessMonitor.GetInstance());
 
             foreach(var resource in resourcesToMonitor)
@@ -46,13 +46,17 @@ namespace ActivityMonitor
         {
             _trayIcon = new NotifyIcon();
             _trayIcon.Icon = Properties.Resources.Icon;
-            _trayIcon.Text = "Activity Monitor";
+            _trayIcon.Text = "Stormy Monitor";
             _trayIcon.Visible = true;
 
             _trayIcon.ContextMenuStrip = new ContextMenuStrip();
             _trayIcon.ContextMenuStrip.Items.AddRange(new ToolStripItem[] { new ToolStripMenuItem() });
             _trayIcon.ContextMenuStrip.Items[0].Text = "Exit";
             _trayIcon.ContextMenuStrip.Items[0].Click += new EventHandler(ExitApplication);
+            _trayIcon.ContextMenuStrip.Items.Add(
+                "Hi Stormy! <3", null,
+                new EventHandler((object sender, EventArgs e) => MessageBox.Show("Hehe :)"))
+            );
 
             _trayIcon.MouseClick += TrayIcon_MouseClick;
         }

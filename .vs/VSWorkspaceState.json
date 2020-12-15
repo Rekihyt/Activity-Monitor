@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ActivityMonitor",
+    "\\ActivityMonitor\\ActivityMonitor",
+    "\\ActivityMonitor\\ActivityMonitor\\Classes"
   ],
+  "SelectedNode": "\\ActivityMonitor\\ActivityMonitor\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
